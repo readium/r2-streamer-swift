@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="uid" prefix="cc: http://creativecommons.org/ns#">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <dc:title id="title">Creative Commons - A Shared Culture</dc:title>
+    <dc:title id="title">Creative Commons - A Shared Culture (DIR)</dc:title>
     <dc:creator>Jesse Dylan</dc:creator>
     <dc:identifier id="uid">code.google.com.epub-samples.cc-shared-culture</dc:identifier>
     <dc:language>en-US</dc:language>
