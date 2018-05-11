@@ -162,13 +162,19 @@ final internal class ContentFiltersEpub: ContentFilters {
         //publication.metadata.primaryContentLayout
         guard let document = try? XMLDocument(string: resourceHtml) else {return stream}
         
-        let langAttribute = document.root?.attr("lang") 
-        let langType = Metadata.LangType(rawString: langAttribute ?? "")
+        let langAttribute = document.root?.attr("lang")
+        let langType = LangType(rawString: langAttribute ?? "")
         
         let pageDirection = publication.metadata.direction
         let contentLayoutStyle = Metadata.contentlayoutStyle(for: langType, pageDirection: pageDirection)
         
         let styleSubFolder = contentLayoutStyle.rawValue
+        
+        if let primaryContentLayout = publication.metadata.primaryContentLayout {
+            if let preset = userSettingsUIPreset[primaryContentLayout] {
+                publication.userSettingsUIPreset = preset
+            }
+        }
         
         let cssBefore = getHtmlLink(forResource: "\(baseUrl)styles/\(styleSubFolder)/ReadiumCSS-before.css")
         let viewport = "<meta name=\"viewport\" content=\"width=device-width, height=device-height, initial-scale=1.0;\"/>\n"
@@ -247,6 +253,36 @@ final internal class ContentFiltersEpub: ContentFilters {
     }
 
 }
+
+let ltrPreset:[ReadiumCSSKey:Bool] = [
+    .hyphens: false,
+    .ligatrues: false]
+
+let rtlPreset:[ReadiumCSSKey:Bool] = [.hyphens: false,
+                                      .wordSpacing: false,
+                                      .letterSpacing: false,
+                                      .ligatrues: true]
+
+let cjkHorizontalPreset: [ReadiumCSSKey:Bool] = [
+    .textAlignement: false,
+    .hyphens: false,
+    .paraIndent: false,
+    .wordSpacing: false,
+    .letterSpacing: false]
+
+let cjkVerticalPreset: [ReadiumCSSKey:Bool] = [
+    .columnCount: false,
+    .textAlignement: false,
+    .hyphens: false,
+    .paraIndent: false,
+    .wordSpacing: false,
+    .letterSpacing: false]
+
+let userSettingsUIPreset:[ContentLayoutStyle: [ReadiumCSSKey:Bool]] = [
+        .ltr: ltrPreset,
+        .rtl: rtlPreset,
+        .cjkVertical: cjkVerticalPreset,
+        .cjkHorizontal: cjkHorizontalPreset]
 
 /// Content filter specialization for CBZ.
 internal class ContentFiltersCbz: ContentFilters {
