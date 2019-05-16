@@ -11,8 +11,8 @@
       <li><a href="ch1.xhtml">Chapter 1</a></li>
       <li><a href="ch2.xhtml">Chapter 2</a></li>
       <li>
-        <span>Unlinked <span>section <bold>with</bold> nested</span> HTML <span>elements</span></span>
-        <ol>
+        <span>Unlinked <span>section <bold>with</bold> nested</span> <span>HTML       elements          </span></span>
+        <ol hidden="hidden"> <!-- `hidden` should be ignored when reporting the list of Link -->
           <li>
             <a href="ssec1.xhtml">Linked sub-section</a>
             <ol>
@@ -25,7 +25,7 @@
       <li>
         <a href="../ch4.xhtml">    A link
           with <span>newlines</span>
-          splitting the text
+          splitting        the text
         </a>
       </li>
       <li><span>An unlinked element without children must be ignored</span></li>
