@@ -3,8 +3,7 @@
   PUBLIC "+//ISBN 0-9673008-1-9//DTD OEB 1.2 Package//EN"
   "http://openebook.org/dtds/oeb-1.2/oebpkg12.dtd" -->
 <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
-  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/"
-      xmlns:rendition="http://www.idpf.org/2013/rendition">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:title>Alice's Adventures in Wonderland</dc:title> 
 
     <meta property="rendition:layout">pre-paginated</meta>
