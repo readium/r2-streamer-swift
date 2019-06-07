@@ -22,7 +22,8 @@
     <dc:description>The book description.</dc:description> 
     <dc:source>Feedbooks</dc:source> 
     <dc:format>application/epub+zip</dc:format>
-    <meta property="dc:source">Web</meta> 
+    <meta id="source1" property="dc:source">Web</meta> 
+    <meta refines="#source1" property="myPrefix:scheme">http</meta>
     <meta name="dc:source" content="Internet"/> 
     <dc:rights>Public Domain</dc:rights> 
     <dc:publisher>D. Appleton and Co</dc:publisher> 
@@ -35,7 +36,9 @@
     <meta property="rendition:spread">both</meta>
     <meta property="og:type">article</meta>
     <meta property="a11y:certifiedBy">EDRLab</meta>
-    <meta property="myPrefix:customProperty">Custom property</meta>
+    <meta id="customProperty" property="myPrefix:customProperty">Custom property</meta>
+    <meta refines="#customProperty" property="myPrefix:refine1">Refine 1</meta>
+    <meta refines="#customProperty" property="myPrefix:refine2">Refine 2</meta>
     <meta property="schema:numberOfPages">42</meta>
 
   </metadata>
