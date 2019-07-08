@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "R2Streamer"
-  s.version      = "1.0.7"
+  s.version      = "1.1.1"
   s.summary      = "R2 Streamer"
   s.homepage     = "http://readium.github.io"
   s.license      = "BSD 3-Clause License"
@@ -9,10 +9,9 @@ Pod::Spec.new do |s|
   s.platform     = :ios
   s.ios.deployment_target = "9.0"
   s.source       = { :git => "https://github.com/readium/r2-streamer-swift.git", :branch => "develop" }
-  s.source_files  = ["R2Streamer/**/*.{m,h,swift}", "Sources/**/*.{m,h,swift}"]
+  s.source_files  = ["r2-streamer-swift/**/*.{m,h,swift}"]
   s.exclude_files = ["**/Info*.plist","**/Carthage/*"]
-  s.xcconfig            = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/R2Streamer/**"' ,
-  'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2'}
+  s.resources    = ['r2-streamer-swift/Resources/**/*.{otf,js}', 'r2-streamer-swift/Resources/styles/**']
   s.swift_version  = "4.2"
 
   s.libraries =  'z'
