@@ -12,9 +12,10 @@ Pod::Spec.new do |s|
   s.source_files  = ["r2-streamer-swift/**/*.{m,h,swift}"]
   s.exclude_files = ["**/Info*.plist","**/Carthage/*"]
   s.resources    = ['r2-streamer-swift/Resources/**/*.{otf,js}', 'r2-streamer-swift/Resources/styles/**']
+  s.xcconfig     = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
   s.swift_version  = "4.2"
 
-  s.libraries =  'z'
+  s.libraries =  ['z', 'xml2']
 
   s.dependency 'R2Shared'
   s.dependency 'Fuzi'
