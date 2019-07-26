@@ -17,10 +17,10 @@ Pod::Spec.new do |s|
 
   s.libraries =  ['z', 'xml2']
 
-  s.dependency 'R2Shared'
-  s.dependency 'Fuzi'
-  s.dependency 'CryptoSwift'
-  s.dependency 'GCDWebServer'
+  s.dependency 'R2Shared',      '~> 1.3.1'
+  s.dependency 'Fuzi',          '3.1.1'
+  s.dependency 'CryptoSwift',   '0.15.0'
+  s.dependency 'GCDWebServer',  '3.5.2'
   s.dependency 'Minizip'
 
 end
