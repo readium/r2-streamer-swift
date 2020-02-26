@@ -12,7 +12,7 @@
   <manifest>
     <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
   </manifest>
-  <readingOrder page-progression-direction="rtl">
+  <spine page-progression-direction="rtl">
     <itemref idref="titlepage"/>
-  </readingOrder>
+  </spine>
 </package>
