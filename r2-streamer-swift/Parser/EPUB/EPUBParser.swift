@@ -119,7 +119,10 @@ final public class EpubParser: PublicationParser {
         if ((try? container.data(relativePath: EPUBConstant.lcplFilePath)) != nil) {
             return DRM(brand: .lcp)
         }
-        return nil
+        
+        return DRM(brand: .adobe)
+        
+        // return nil
     }
 
     /// Attempt to fill the `Publication`'s `tableOfContent`, `landmarks`, `pageList` and `listOfX` links collections using the navigation document.
