@@ -22,28 +22,6 @@ public enum CBZParserError: Error {
 @available(*, deprecated, renamed: "CBZParserError")
 public typealias CbzParserError = CBZParserError
 
-/// CBZ related constants.
-struct CBZConstant {
-    public static let mimetype = "application/vnd.comicbook+zip"
-}
-
-public enum MediaType: String {
-    case jpeg = "image/jpeg"
-    case png = "image/png"
-    
-    init?(filename: String) {
-        switch filename.pathExtension.lowercased() {
-        case "jpg", "jpeg":
-            self = .jpeg
-        case "png":
-            self = .png
-        default:
-            return nil
-        }
-    }
-    
-}
-
 /// CBZ publication parsing class.
 public class CbzParser: PublicationParser {
 
@@ -74,34 +52,45 @@ public class CbzParser: PublicationParser {
     }
     
     private static func parsePublication(in container: CBZContainer, at url: URL) -> Publication {
+        var didSetCover = false
         let publication = Publication(
             format: .cbz,
             positionListFactory: makePositionList(of:),
             metadata: Metadata(
                 identifier: url.lastPathComponent,
-                title: url.lastPathComponent
+                title: url.deletingPathExtension()
+                    .lastPathComponent
                     .replacingOccurrences(of: "_", with: " ")
             ),
             readingOrder: container.files
                 .compactMap { filename in
-                    guard let mediaType = MediaType(filename: filename) else {
+                    guard let format = Format.of(fileExtension: filename.pathExtension),
+                        format.mediaType.isBitmap else
+                    {
                         return nil
                     }
+                    
+                    var rel: String?
+                    
+                    // First valid resource is the cover.
+                    if !didSetCover {
+                        didSetCover = true
+                        rel = "cover"
+                    }
+                    
                     return Link(
                         href: normalize(base: container.rootFile.rootFilePath, href: filename),
-                        type: mediaType.rawValue
+                        type: format.mediaType.string,
+                        rel: rel
                     )
                 }
         )
-        
-        // First valid resource is the cover.
-        publication.readingOrder.first?.rels.append("cover")
         
         return publication
     }
 
     /// Generate a Container instance for the file at `fileAtPath`. It handles
-    /// 2 cases, CBZ files and CBZ epub directories.
+    /// 2 cases, CBZ files and CBZ directories.
     ///
     /// - Parameter path: The absolute path of the file.
     /// - Returns: The generated Container.

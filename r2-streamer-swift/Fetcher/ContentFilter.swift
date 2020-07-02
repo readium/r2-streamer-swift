@@ -67,9 +67,7 @@ final internal class ContentFiltersEpub: ContentFilters {
         //   if (publication layout is 'reflow' &&  resource is `not specified`)
         //     || resource is 'reflow'
         //       - inject pagination
-        if let link = publication.link(withHref: path),
-            ["application/xhtml+xml", "text/html"].contains(link.type)
-        {
+        if let link = publication.link(withHref: path), link.mediaType?.isHTML == true {
             if publication.metadata.presentation.layout(of: link) == .reflowable {
                 decodedInputStream = injectReflowableHtml(in: decodedInputStream, for: publication)
             }
@@ -204,8 +202,8 @@ let userSettingsUIPreset:[ContentLayout: [ReadiumCSSName: Bool]] = [
 /// Content filter specialization for CBZ.
 internal class ContentFiltersCbz: ContentFilters {}
 
-/// Content filter specialization for PDF.
-internal class ContentFiltersPDF: ContentFilters {
+/// Content filter specialization for LCP protected packages (except EPUB).
+internal class ContentFiltersLCP: ContentFilters {
 
     func apply(to input: SeekableInputStream, of publication: Publication, with container: Container, at path: String) throws -> SeekableInputStream {
         /// Get the link for the resource.
