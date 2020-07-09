@@ -85,7 +85,7 @@ final class EPUBEncryptionParser: Loggable {
             // LCP END.
             
             if drm?.brand == .adobe {
-                encryption.scheme = drm?.scheme.rawValue
+                scheme = drm?.scheme.rawValue
             }
 
             for encryptionProperty in encryptedDataElement.xpath("enc:EncryptionProperties/enc:EncryptionProperty") {

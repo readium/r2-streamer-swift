@@ -79,6 +79,7 @@ final public class EpubParser: PublicationParser {
             resources: components.resources,
             otherCollections: parseCollections(in: container, links: links)
         )
+        publication.links = links
         
         func parseRemainingResource(protectedBy drm: DRM?) throws {
             container.drm = drm
