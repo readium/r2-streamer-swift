@@ -26,9 +26,11 @@ public class ReadiumWebPubParser: PublicationParser, Loggable {
     }
     
     private let pdfFactory: PDFDocumentFactory
+    private let httpClient: HTTPClient
     
-    public init(pdfFactory: PDFDocumentFactory = DefaultPDFDocumentFactory()) {
+    public init(pdfFactory: PDFDocumentFactory, httpClient: HTTPClient) {
         self.pdfFactory = pdfFactory
+        self.httpClient = httpClient
     }
     
     public func parse(asset: PublicationAsset, fetcher: Fetcher, warnings: WarningLogger?) throws -> Publication.Builder? {
@@ -55,7 +57,7 @@ public class ReadiumWebPubParser: PublicationParser, Loggable {
         // used to read the manifest file. We use an `HTTPFetcher` instead to serve the remote
         // resources.
         if !isPackage {
-            fetcher = HTTPFetcher()
+            fetcher = HTTPFetcher(client: httpClient)
         }
 
         if mediaType.matches(.lcpProtectedPDF) {
