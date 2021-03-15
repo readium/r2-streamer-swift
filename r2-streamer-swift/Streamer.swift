@@ -41,6 +41,7 @@ public final class Streamer: Loggable {
     ///     `ContentProtection` is tested in the given order.
     ///   - archiveFactory: Opens an archive (e.g. ZIP, RAR), optionally protected by credentials.
     ///   - pdfFactory: Parses a PDF document, optionally protected by password.
+    ///   - httpClient: Service performing HTTP requests.
     ///   - onCreatePublication: Transformation which will be applied on every parsed Publication
     ///     Builder. It can be used to modify the `Manifest`, the root `Fetcher` or the list of
     ///     service factories of a `Publication`.
