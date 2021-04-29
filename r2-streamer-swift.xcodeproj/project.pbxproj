@@ -49,11 +49,6 @@
 		CA2D155F24BEFA0F0034927C /* FetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA2D155E24BEFA0F0034927C /* FetcherTests.swift */; };
 		CA3387072406632100FDCBBA /* Asserts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3387062406632100FDCBBA /* Asserts.swift */; };
 		CA3F3FA8248EB156005B8A0B /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3F3FA7248EB156005B8A0B /* Fetcher.swift */; };
-		CA4CF4F325CDAF9C005DD935 /* Minizip.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4EE25CDAF9C005DD935 /* Minizip.xcframework */; };
-		CA4CF4F425CDAF9C005DD935 /* R2Shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4EF25CDAF9C005DD935 /* R2Shared.xcframework */; };
-		CA4CF4F525CDAF9C005DD935 /* Fuzi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F025CDAF9C005DD935 /* Fuzi.xcframework */; };
-		CA4CF4F625CDAF9C005DD935 /* GCDWebServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F125CDAF9C005DD935 /* GCDWebServer.xcframework */; };
-		CA4CF4F725CDAF9C005DD935 /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F225CDAF9C005DD935 /* CryptoSwift.xcframework */; };
 		CA4CF4FA25CDAFA2005DD935 /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F225CDAF9C005DD935 /* CryptoSwift.xcframework */; };
 		CA4CF4FB25CDAFA2005DD935 /* Fuzi.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F025CDAF9C005DD935 /* Fuzi.xcframework */; };
 		CA4CF4FC25CDAFA2005DD935 /* GCDWebServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA4CF4F125CDAF9C005DD935 /* GCDWebServer.xcframework */; };
@@ -65,6 +60,11 @@
 		CA6F97D222A5161A007D2049 /* EPUBContainerParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F97D122A5161A007D2049 /* EPUBContainerParserTests.swift */; };
 		CA6F97D422A52810007D2049 /* OPFParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F97D322A52810007D2049 /* OPFParserTests.swift */; };
 		CA6F97DA22A6A0B7007D2049 /* OPFMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F97D922A6A0B6007D2049 /* OPFMeta.swift */; };
+		CA7B77BC263AB93B00260838 /* R2Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B77BB263AB93B00260838 /* R2Shared.framework */; };
+		CA7B77C0263AB94000260838 /* Minizip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B77BF263AB94000260838 /* Minizip.framework */; };
+		CA7B77C3263AB94600260838 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B77C2263AB94600260838 /* Fuzi.framework */; };
+		CA7B77C6263AB94B00260838 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B77C5263AB94B00260838 /* CryptoSwift.framework */; };
+		CA7B77C9263AB94F00260838 /* GCDWebServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7B77C8263AB94F00260838 /* GCDWebServer.framework */; };
 		CA8672B2244868B50035FDF4 /* DataCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA130D20229D4245000A627C /* DataCompression.swift */; };
 		CA8F18D52483901700146D11 /* PublicationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8F18D42483901700146D11 /* PublicationContainer.swift */; };
 		CA8F18D7248394F100146D11 /* ResourceInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8F18D6248394F100146D11 /* ResourceInputStream.swift */; };
@@ -155,6 +155,16 @@
 		CA6F97D122A5161A007D2049 /* EPUBContainerParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EPUBContainerParserTests.swift; sourceTree = "<group>"; };
 		CA6F97D322A52810007D2049 /* OPFParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFParserTests.swift; sourceTree = "<group>"; };
 		CA6F97D922A6A0B6007D2049 /* OPFMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPFMeta.swift; sourceTree = "<group>"; };
+		CA7B779E263AB8DF00260838 /* R2Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = R2Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77A2263AB8E300260838 /* Minizip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Minizip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77A5263AB8E800260838 /* Fuzi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fuzi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77A8263AB8EC00260838 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77AB263AB8F300260838 /* GCDWebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GCDWebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77BB263AB93B00260838 /* R2Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = R2Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77BF263AB94000260838 /* Minizip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Minizip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77C2263AB94600260838 /* Fuzi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fuzi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77C5263AB94B00260838 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7B77C8263AB94F00260838 /* GCDWebServer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GCDWebServer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8F18D42483901700146D11 /* PublicationContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationContainer.swift; sourceTree = "<group>"; };
 		CA8F18D6248394F100146D11 /* ResourceInputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceInputStream.swift; sourceTree = "<group>"; };
 		CA94291722BCE42500305CDB /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -180,12 +190,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7B77C3263AB94600260838 /* Fuzi.framework in Frameworks */,
 				59501E201E2FB2AD00D1B4BF /* libz.tbd in Frameworks */,
-				CA4CF4F325CDAF9C005DD935 /* Minizip.xcframework in Frameworks */,
-				CA4CF4F425CDAF9C005DD935 /* R2Shared.xcframework in Frameworks */,
-				CA4CF4F525CDAF9C005DD935 /* Fuzi.xcframework in Frameworks */,
-				CA4CF4F625CDAF9C005DD935 /* GCDWebServer.xcframework in Frameworks */,
-				CA4CF4F725CDAF9C005DD935 /* CryptoSwift.xcframework in Frameworks */,
+				CA7B77BC263AB93B00260838 /* R2Shared.framework in Frameworks */,
+				CA7B77C9263AB94F00260838 /* GCDWebServer.framework in Frameworks */,
+				CA7B77C6263AB94B00260838 /* CryptoSwift.framework in Frameworks */,
+				CA7B77C0263AB94000260838 /* Minizip.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +253,16 @@
 		59501E171E2FB1F500D1B4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CA7B77C8263AB94F00260838 /* GCDWebServer.framework */,
+				CA7B77C5263AB94B00260838 /* CryptoSwift.framework */,
+				CA7B77C2263AB94600260838 /* Fuzi.framework */,
+				CA7B77BF263AB94000260838 /* Minizip.framework */,
+				CA7B77BB263AB93B00260838 /* R2Shared.framework */,
+				CA7B77AB263AB8F300260838 /* GCDWebServer.framework */,
+				CA7B77A8263AB8EC00260838 /* CryptoSwift.framework */,
+				CA7B77A5263AB8E800260838 /* Fuzi.framework */,
+				CA7B77A2263AB8E300260838 /* Minizip.framework */,
+				CA7B779E263AB8DF00260838 /* R2Shared.framework */,
 				CA4CF4F225CDAF9C005DD935 /* CryptoSwift.xcframework */,
 				CA4CF4F025CDAF9C005DD935 /* Fuzi.xcframework */,
 				CA4CF4F125CDAF9C005DD935 /* GCDWebServer.xcframework */,
