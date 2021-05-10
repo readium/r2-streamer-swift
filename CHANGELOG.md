@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 **Warning:** Features marked as *experimental* may change or be removed in a future release without notice. Use with caution.
 
-## [Unreleased]
+<!--## [Unreleased]-->
+
+## [2.0.0-beta.2]
 
 ### Added
 
@@ -15,7 +17,6 @@ All notable changes to this project will be documented in this file.
 
 * The HTTP server now requests that publication resources are not cached by browsers.
   * Caching poses a security risk for protected publications.
-* CocoaPods is not supported anymore.
 
 
 ## [2.0.0-beta.1]
@@ -60,3 +61,4 @@ All notable changes to this project will be documented in this file.
 [2.0.0-alpha.1]: https://github.com/readium/r2-streamer-swift/compare/1.2.5...2.0.0-alpha.1
 [2.0.0-alpha.2]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-alpha.1...2.0.0-alpha.2
 [2.0.0-beta.1]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-alpha.2...2.0.0-beta.1
+[2.0.0-beta.2]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-beta.1...2.0.0-beta.2
