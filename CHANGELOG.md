@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 <!--## [Unreleased]-->
 
+## [2.0.0]
+
 ### Deprecated
 
 * All APIs deprecated in previous versions are now unavailable.
