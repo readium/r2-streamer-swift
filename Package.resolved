@@ -20,6 +20,24 @@
         }
       },
       {
+        "package": "GCDWebServer",
+        "repositoryURL": "https://github.com/stevenzeck/GCDWebServer.git",
+        "state": {
+          "branch": "use-spm",
+          "revision": "d4012b202d999c1829b0676670787629352b7bad",
+          "version": null
+        }
+      },
+      {
+        "package": "R2Shared",
+        "repositoryURL": "https://github.com/stevenzeck/r2-shared-swift.git",
+        "state": {
+          "branch": "use-spm",
+          "revision": "977ca70807d27ff31d939f64da4d63089aa9827a",
+          "version": null
+        }
+      },
+      {
         "package": "Zip",
         "repositoryURL": "https://github.com/marmelroy/Zip.git",
         "state": {
