@@ -81,9 +81,14 @@ final class EPUBPositionsService: PositionsService {
     }
     
     private func makePositions(ofReflowableResource link: Link, from startPosition: Int) -> (Int, [Locator]) {
-        // If the resource is encrypted, we use the originalLength declared in encryption.xml instead of the ZIP entry length
-        let length = link.properties.encryption?.originalLength
-            ?? Int((try? fetcher.get(link).length.get()) ?? 0)
+        // We use the the compressed length of entries as the base length, since it gives results closer to real pages.
+        // This is also the algorithm used by Adobe RMSDK.
+        // See https://github.com/readium/architecture/issues/123
+        let resource = fetcher.get(link)
+        let length = resource.link.properties.archive?.entryLength
+            ?? (try? resource.length.get())
+            ?? 0
+        resource.close()
 
         // Arbitrary byte length of a single page in a resource.
         let pageLength = reflowablePositionLength
