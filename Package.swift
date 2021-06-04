@@ -18,7 +18,8 @@ let package = Package(
         .package(url: "https://github.com/cezheng/Fuzi.git", .exact("3.1.3")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .exact("1.3.8")),
         .package(name: "R2Shared", url: "https://github.com/stevenzeck/r2-shared-swift.git", .branch("use-spm")),
-        .package(name: "GCDWebServer", url: "https://github.com/stevenzeck/GCDWebServer.git", .branch("use-spm"))
+//        .package(name: "GCDWebServer", url: "../../GCDWebServer", .branch("use-spm"))
+        .package(path: "../../GCDWebServer")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -29,7 +30,7 @@ let package = Package(
             path: "./r2-streamer-swift/",
             exclude: ["Info.plist"],
             resources: [
-                .copy("Resources")
+                .copy("Assets")
             ]
         ),
         .testTarget(
