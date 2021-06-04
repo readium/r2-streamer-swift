@@ -1,12 +1,7 @@
 //
-//  EPUBPositionsService.swift
-//  r2-streamer-swift
-//
-//  Created by Mickaël Menu on 31/05/2020.
-//
 //  Copyright 2020 Readium Foundation. All rights reserved.
-//  Use of this source code is governed by a BSD-style license which is detailed
-//  in the LICENSE file present in the project repository where this source code is maintained.
+//  Use of this source code is governed by the BSD-style license
+//  available in the top-level LICENSE file of the project.
 //
 
 import Foundation
@@ -20,24 +15,65 @@ import R2Shared
 /// https://github.com/readium/architecture/blob/master/models/locators/best-practices/format.md#epub
 /// https://github.com/readium/architecture/issues/101
 ///
-final class EPUBPositionsService: PositionsService {
+public final class EPUBPositionsService: PositionsService {
+
+    public static func makeFactory(reflowableStrategy: ReflowableStrategy = .adobeRMSDK) -> (PublicationServiceContext) -> EPUBPositionsService? {
+        return { context in
+            EPUBPositionsService(
+                readingOrder: context.manifest.readingOrder,
+                presentation: context.manifest.metadata.presentation,
+                fetcher: context.fetcher,
+                reflowableStrategy: reflowableStrategy
+            )
+        }
+    }
+
+    /// Strategy used to calculate the number of positions in a reflowable resource.
+    ///
+    /// Note that a fixed-layout resource always has a single position.
+    public enum ReflowableStrategy {
+        /// Use the original length of each resource (before compression and encryption) and split it by the given
+        /// `pageLength`.
+        case originalLength(pageLength: Int)
+
+        /// Use the archive entry length (whether it is compressed or stored) and split it by the given `pageLength`.
+        case archiveEntryLength(pageLength: Int)
+
+        /// Strategy used by Adobe RMSDK: use the archive entry length and split it by 1024 bytes.
+        /// See https://github.com/readium/architecture/issues/123
+        public static var adobeRMSDK = archiveEntryLength(pageLength: 1024)
+
+        /// Returns the number of positions in the given `resource` according to the strategy.
+        func positionCount(for resource: Resource) -> Int {
+            switch self {
+            case .originalLength(let pageLength):
+                let length = resource.link.properties.encryption?.originalLength.map { UInt64($0) }
+                    ?? (try? resource.length.get())
+                    ?? 0
+                return max(1, Int(ceil((Double(length) / Double(pageLength)))))
+
+            case .archiveEntryLength(let pageLength):
+                let length = resource.link.properties.archive?.entryLength
+                    ?? (try? resource.length.get())
+                    ?? 0
+                return max(1, Int(ceil((Double(length) / Double(pageLength)))))
+            }
+        }
+    }
     
     private let readingOrder: [Link]
     private let presentation: Presentation
     private let fetcher: Fetcher
-    
-    /// Length in bytes of a position in a reflowable resource. This is used to split a single
-    /// reflowable resource into several positions.
-    private let reflowablePositionLength: Int
-    
-    init(readingOrder: [Link], presentation: Presentation, fetcher: Fetcher, reflowablePositionLength: Int) {
+    private let reflowableStrategy: ReflowableStrategy
+
+    init(readingOrder: [Link], presentation: Presentation, fetcher: Fetcher, reflowableStrategy: ReflowableStrategy) {
         self.readingOrder = readingOrder
         self.fetcher = fetcher
         self.presentation = presentation
-        self.reflowablePositionLength = reflowablePositionLength
+        self.reflowableStrategy = reflowableStrategy
     }
     
-    lazy var positionsByReadingOrder: [[Locator]] = {
+    public lazy var positionsByReadingOrder: [[Locator]] = {
         var lastPositionOfPreviousResource = 0
         var positions = readingOrder.map { link -> [Locator] in
             let (lastPosition, positions): (Int, [Locator]) = {
@@ -83,27 +119,20 @@ final class EPUBPositionsService: PositionsService {
     private func makePositions(ofReflowableResource link: Link, from startPosition: Int) -> (Int, [Locator]) {
         // We use the the compressed length of entries as the base length, since it gives results closer to real pages.
         // This is also the algorithm used by Adobe RMSDK.
-        // See https://github.com/readium/architecture/issues/123
         let resource = fetcher.get(link)
-        let length = resource.link.properties.archive?.entryLength
-            ?? (try? resource.length.get())
-            ?? 0
+        let positionCount = reflowableStrategy.positionCount(for: resource)
         resource.close()
 
-        // Arbitrary byte length of a single page in a resource.
-        let pageLength = reflowablePositionLength
-        let pageCount = max(1, Int(ceil((Double(length) / Double(pageLength)))))
-        
-        let positions = (1...pageCount).map { position in
+        let positions = (1...positionCount).map { position in
             makeLocator(
                 for: link,
-                progression: Double(position - 1) / Double(pageCount),
+                progression: Double(position - 1) / Double(positionCount),
                 position: startPosition + position
             )
         }
-        return (startPosition + pageCount, positions)
+        return (startPosition + positionCount, positions)
     }
-    
+
     private func makeLocator(for link: Link, progression: Double, position: Int) -> Locator {
         return Locator(
             href: link.href,
@@ -116,15 +145,4 @@ final class EPUBPositionsService: PositionsService {
         )
     }
 
-    static func makeFactory(reflowablePositionLength: Int = 1024) -> (PublicationServiceContext) -> EPUBPositionsService? {
-        return { context in
-            EPUBPositionsService(
-                readingOrder: context.manifest.readingOrder,
-                presentation: context.manifest.metadata.presentation,
-                fetcher: context.fetcher,
-                reflowablePositionLength: reflowablePositionLength
-            )
-        }
-    }
-    
 }

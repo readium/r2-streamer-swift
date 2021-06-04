@@ -150,7 +150,7 @@ class EPUBPositionsServiceTests: XCTestCase {
                 (51, Link(href: "chap4")),
                 (120, Link(href: "chap5"))
             ],
-            reflowablePositionLength: 50
+            reflowableStrategy: .archiveEntryLength(pageLength: 50)
         )
 
         XCTAssertEqual(service.positionsByReadingOrder, [
@@ -247,7 +247,7 @@ class EPUBPositionsServiceTests: XCTestCase {
             readingOrder: [
                 (60, Link(href: "chap1"))
             ],
-            reflowablePositionLength: 50
+            reflowableStrategy: .archiveEntryLength(pageLength: 50)
         )
 
         XCTAssertEqual(service.positionsByReadingOrder, [[
@@ -280,7 +280,7 @@ class EPUBPositionsServiceTests: XCTestCase {
                 (60, Link(href: "chap2", properties: makeProperties(layout: .reflowable))),
                 (20000, Link(href: "chap3", properties: makeProperties(layout: .fixed)))
             ],
-            reflowablePositionLength: 50
+            reflowableStrategy: .archiveEntryLength(pageLength: 50)
         )
 
         XCTAssertEqual(service.positionsByReadingOrder, [
@@ -329,14 +329,59 @@ class EPUBPositionsServiceTests: XCTestCase {
         ])
     }
     
-    func testUsesArchiveEntryLengthWhenAvailable() {
+    func testArchiveEntryLengthStrategy() {
         let service = makeService(
             layout: .reflowable,
             readingOrder: [
                 (60, Link(href: "chap1", properties: makeProperties(archiveEntryLength: 20))),
                 (60, Link(href: "chap2"))
             ],
-            reflowablePositionLength: 50
+            reflowableStrategy: .archiveEntryLength(pageLength: 50)
+        )
+
+        XCTAssertEqual(service.positionsByReadingOrder, [
+            [
+                Locator(
+                    href: "chap1",
+                    type: "text/html",
+                    locations: Locator.Locations(
+                        progression: 0.0,
+                        totalProgression: 0.0,
+                        position: 1
+                    )
+                )
+            ],
+            [
+                Locator(
+                    href: "chap2",
+                    type: "text/html",
+                    locations: Locator.Locations(
+                        progression: 0.0,
+                        totalProgression: 1.0/3.0,
+                        position: 2
+                    )
+                ),
+                Locator(
+                    href: "chap2",
+                    type: "text/html",
+                    locations: Locator.Locations(
+                        progression: 0.5,
+                        totalProgression: 2.0/3.0,
+                        position: 3
+                    )
+                )
+            ]
+        ])
+    }
+
+    func testOriginalLengthStrategy() {
+        let service = makeService(
+            layout: .reflowable,
+            readingOrder: [
+                (60, Link(href: "chap1", properties: makeProperties(originalLength: 20))),
+                (60, Link(href: "chap2"))
+            ],
+            reflowableStrategy: .originalLength(pageLength: 50)
         )
 
         XCTAssertEqual(service.positionsByReadingOrder, [
@@ -376,19 +421,25 @@ class EPUBPositionsServiceTests: XCTestCase {
 
 }
 
-func makeService(layout: EPUBLayout? = nil, readingOrder: [(UInt64, Link)], reflowablePositionLength: Int = 50) -> EPUBPositionsService {
+func makeService(layout: EPUBLayout? = nil, readingOrder: [(UInt64, Link)], reflowableStrategy: EPUBPositionsService.ReflowableStrategy = .archiveEntryLength(pageLength: 50)) -> EPUBPositionsService {
     return EPUBPositionsService(
         readingOrder: readingOrder.map { _, l in l },
         presentation: Presentation(layout: layout),
         fetcher: MockFetcher(readingOrder: readingOrder),
-        reflowablePositionLength: reflowablePositionLength
+        reflowableStrategy: reflowableStrategy
     )
 }
 
-private func makeProperties(layout: EPUBLayout? = nil, archiveEntryLength: UInt64? = nil) -> Properties {
+private func makeProperties(layout: EPUBLayout? = nil, archiveEntryLength: UInt64? = nil, originalLength: Int? = nil) -> Properties {
     var props: [String: Any] = [:]
     if let layout = layout {
         props["layout"] = layout.rawValue
+    }
+    if let originalLength = originalLength {
+        props["encrypted"] = [
+            "algorithm": "algo",
+            "originalLength": originalLength
+        ]
     }
     if let archiveEntryLength = archiveEntryLength {
         props["archive"] = [

@@ -45,8 +45,13 @@ extension EPUBParser: Loggable {}
 /// An EPUB container parser that extracts the information from the relevant
 /// files and builds a `Publication` instance out of it.
 final public class EPUBParser: PublicationParser {
-    
-    public init() {}
+
+    private let reflowablePositionsStrategy: EPUBPositionsService.ReflowableStrategy
+
+    /// - Parameter reflowablePositionsStrategy: Strategy used to calculate the number of positions in a reflowable resource.
+    public init(reflowablePositionsStrategy: EPUBPositionsService.ReflowableStrategy = .adobeRMSDK) {
+        self.reflowablePositionsStrategy = reflowablePositionsStrategy
+    }
     
     public func parse(asset: PublicationAsset, fetcher: Fetcher, warnings: WarningLogger?) throws -> Publication.Builder? {
         guard asset.mediaType() == .epub else {
@@ -79,7 +84,7 @@ final public class EPUBParser: PublicationParser {
                 EPUBHTMLInjector(metadata: components.metadata, userProperties: userProperties).inject(resource:)
             ].compactMap { $0 }),
             servicesBuilder: .init(
-                positions: EPUBPositionsService.makeFactory()
+                positions: EPUBPositionsService.makeFactory(reflowableStrategy: reflowablePositionsStrategy)
             ),
             setupPublication: { publication in
                 publication.userProperties = userProperties
