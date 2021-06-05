@@ -11,6 +11,13 @@ All notable changes to this project will be documented in this file.
 * EPUB publications implement a `SearchService` to search through the content.
 
 
+## [2.0.0]
+
+### Deprecated
+
+* All APIs deprecated in previous versions are now unavailable.
+
+
 ## [2.0.0-beta.2]
 
 ### Added
@@ -67,3 +74,4 @@ All notable changes to this project will be documented in this file.
 [2.0.0-alpha.2]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-alpha.1...2.0.0-alpha.2
 [2.0.0-beta.1]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-alpha.2...2.0.0-beta.1
 [2.0.0-beta.2]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-beta.1...2.0.0-beta.2
+[2.0.0]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-beta.2...2.0.0
