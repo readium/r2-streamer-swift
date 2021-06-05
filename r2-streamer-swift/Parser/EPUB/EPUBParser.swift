@@ -80,7 +80,7 @@ final public class EPUBParser: PublicationParser {
             ].compactMap { $0 }),
             servicesBuilder: .init(
                 positions: EPUBPositionsService.makeFactory(),
-                search: StringSearchService.makeFactory()
+                search: _StringSearchService.makeFactory()
             ),
             setupPublication: { publication in
                 publication.userProperties = userProperties
