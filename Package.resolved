@@ -21,20 +21,29 @@
       },
       {
         "package": "GCDWebServer",
-        "repositoryURL": "https://github.com/stevenzeck/GCDWebServer.git",
+        "repositoryURL": "https://github.com/readium/GCDWebServer.git",
         "state": {
-          "branch": "use-spm",
-          "revision": "423b33e93af802fe697fe42b002c4de9d7a96c25",
-          "version": null
+          "branch": null,
+          "revision": "fa49907a784263e7fcc88739d3937d1a2022d50a",
+          "version": "3.7.0"
         }
       },
       {
         "package": "R2Shared",
-        "repositoryURL": "https://github.com/stevenzeck/r2-shared-swift.git",
+        "repositoryURL": "https://github.com/readium/r2-shared-swift.git",
         "state": {
-          "branch": "use-spm",
-          "revision": "977ca70807d27ff31d939f64da4d63089aa9827a",
+          "branch": "develop",
+          "revision": "b668bae51ae45e1b58a204771bb7ea080a17f6d8",
           "version": null
+        }
+      },
+      {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup",
+        "state": {
+          "branch": null,
+          "revision": "774dc9c7213085db8aa59595e27c1cd22e428904",
+          "version": "2.3.2"
         }
       },
       {
@@ -44,15 +53,6 @@
           "branch": null,
           "revision": "bd19d974e8a38cc8d3a88c90c8a107386c3b8ccf",
           "version": "2.1.1"
-        }
-      },
-      {
-        "package": "ZIPFoundation",
-        "repositoryURL": "https://github.com/weichsel/ZIPFoundation.git",
-        "state": {
-          "branch": null,
-          "revision": "ec32d62d412578542c0ffb7a6ce34d3e64b43b94",
-          "version": "0.9.11"
         }
       }
     ]

@@ -1,14 +1,17 @@
 // swift-tools-version:5.3
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+//
+//  Copyright 2021 Readium Foundation. All rights reserved.
+//  Use of this source code is governed by the BSD-style license
+//  available in the top-level LICENSE file of the project.
+//
 
 import PackageDescription
 
 let package = Package(
     name: "R2Streamer",
     defaultLocalization: "en",
-    platforms: [.iOS(.v10), .macOS("10.12"), .tvOS(.v9)],
+    platforms: [.iOS(.v10)],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "R2Streamer",
             targets: ["R2Streamer"]),
@@ -17,12 +20,10 @@ let package = Package(
         .package(url: "https://github.com/marmelroy/Zip.git", .exact("2.1.1")),
         .package(url: "https://github.com/cezheng/Fuzi.git", .exact("3.1.3")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .exact("1.3.8")),
-        .package(name: "R2Shared", url: "https://github.com/stevenzeck/r2-shared-swift.git", .branch("use-spm")),
-        .package(name: "GCDWebServer", url: "https://github.com/stevenzeck/GCDWebServer.git", .branch("use-spm")),
+        .package(name: "R2Shared", url: "https://github.com/readium/r2-shared-swift.git", .branch("develop")),
+        .package(name: "GCDWebServer", url: "https://github.com/readium/GCDWebServer.git", from: "3.7.0"),
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "R2Streamer",
             dependencies: ["Zip", "Fuzi", "CryptoSwift", "R2Shared", "GCDWebServer"],
