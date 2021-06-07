@@ -2,13 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-**Warning:** Features marked as *experimental* may change or be removed in a future release without notice. Use with caution.
+**Warning:** Features marked as *alpha* may change or be removed in a future release without notice. Use with caution.
 
 ## [Unreleased]
 
 ### Added
 
 * Support for Swift Package Manager (contributed by [@stevenzeck](https://github.com/readium/r2-streamer-swift/pull/210)).
+* EPUB publications implement a `SearchService` to search through the content.
 
 
 ## [2.0.0]
