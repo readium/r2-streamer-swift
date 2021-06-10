@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary      = "R2 Streamer"
   s.homepage     = "http://readium.github.io"
   s.author       = { "Aferdita Muriqi" => "aferdita.muriqi@gmail.com" }
-  s.source       = { :git => "https://github.com/readium/r2-streamer-swift.git", :branch => "gha" }
+  s.source       = { :git => "https://github.com/readium/r2-streamer-swift.git", :branch => "develop" }
   s.exclude_files = ["**/Info*.plist"]
   s.requires_arc = true
   s.resources    = ['r2-streamer-swift/Resources/**', 'r2-streamer-swift/Assets']
@@ -17,9 +17,9 @@ Pod::Spec.new do |s|
   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
 
   s.dependency 'R2Shared'
-  s.dependency 'Fuzi', '~> 3.1.3'
   s.dependency 'CryptoSwift', '~> 1.3.8'
+  s.dependency 'Fuzi', '~> 3.1.3'
   s.dependency 'GCDWebServer', '~> 3.6.3'
-  s.dependency 'Minizip', '~> 1.4.0'
+  s.dependency 'Minizip', '~> 1.0.0'
 
 end
