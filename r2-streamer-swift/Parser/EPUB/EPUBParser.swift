@@ -11,6 +11,7 @@
 
 import R2Shared
 import Fuzi
+import Foundation
 
 /// Epub related constants.
 private struct EPUBConstant {
@@ -84,8 +85,9 @@ final public class EPUBParser: PublicationParser {
                 EPUBHTMLInjector(metadata: components.metadata, userProperties: userProperties).inject(resource:)
             ].compactMap { $0 }),
             servicesBuilder: .init(
-                positions: EPUBPositionsService.makeFactory(reflowableStrategy: reflowablePositionsStrategy)
-            ),
+                positions: EPUBPositionsService.makeFactory(reflowableStrategy: reflowablePositionsStrategy),
+                search: _StringSearchService.makeFactory()
+`           ),
             setupPublication: { publication in
                 publication.userProperties = userProperties
                 publication.userSettingsUIPreset = self.userSettingsPreset(for: publication.metadata)
