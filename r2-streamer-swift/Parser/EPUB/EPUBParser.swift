@@ -50,7 +50,7 @@ final public class EPUBParser: PublicationParser {
     private let reflowablePositionsStrategy: EPUBPositionsService.ReflowableStrategy
 
     /// - Parameter reflowablePositionsStrategy: Strategy used to calculate the number of positions in a reflowable resource.
-    public init(reflowablePositionsStrategy: EPUBPositionsService.ReflowableStrategy = .adobeRMSDK) {
+    public init(reflowablePositionsStrategy: EPUBPositionsService.ReflowableStrategy = .recommended) {
         self.reflowablePositionsStrategy = reflowablePositionsStrategy
     }
     
@@ -87,7 +87,7 @@ final public class EPUBParser: PublicationParser {
             servicesBuilder: .init(
                 positions: EPUBPositionsService.makeFactory(reflowableStrategy: reflowablePositionsStrategy),
                 search: _StringSearchService.makeFactory()
-`           ),
+            ),
             setupPublication: { publication in
                 publication.userProperties = userProperties
                 publication.userSettingsUIPreset = self.userSettingsPreset(for: publication.metadata)

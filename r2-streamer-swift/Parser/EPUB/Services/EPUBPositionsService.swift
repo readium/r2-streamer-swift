@@ -17,7 +17,7 @@ import R2Shared
 ///
 public final class EPUBPositionsService: PositionsService {
 
-    public static func makeFactory(reflowableStrategy: ReflowableStrategy = .adobeRMSDK) -> (PublicationServiceContext) -> EPUBPositionsService? {
+    public static func makeFactory(reflowableStrategy: ReflowableStrategy = .recommended) -> (PublicationServiceContext) -> EPUBPositionsService? {
         return { context in
             EPUBPositionsService(
                 readingOrder: context.manifest.readingOrder,
@@ -39,9 +39,11 @@ public final class EPUBPositionsService: PositionsService {
         /// Use the archive entry length (whether it is compressed or stored) and split it by the given `pageLength`.
         case archiveEntryLength(pageLength: Int)
 
-        /// Strategy used by Adobe RMSDK: use the archive entry length and split it by 1024 bytes.
+        /// Recommended historical strategy: archive entry length split by 1024 bytes pages.
+        ///
+        /// This strategy is used by Adobe RMSDK as well.
         /// See https://github.com/readium/architecture/issues/123
-        public static var adobeRMSDK = archiveEntryLength(pageLength: 1024)
+        public static var recommended = archiveEntryLength(pageLength: 1024)
 
         /// Returns the number of positions in the given `resource` according to the strategy.
         func positionCount(for resource: Resource) -> Int {
@@ -117,8 +119,6 @@ public final class EPUBPositionsService: PositionsService {
     }
     
     private func makePositions(ofReflowableResource link: Link, from startPosition: Int) -> (Int, [Locator]) {
-        // We use the the compressed length of entries as the base length, since it gives results closer to real pages.
-        // This is also the algorithm used by Adobe RMSDK.
         let resource = fetcher.get(link)
         let positionCount = reflowableStrategy.positionCount(for: resource)
         resource.close()
