@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -391,9 +391,7 @@
 		BDD94E8927241F36D8620F2B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = DF44B909883E6BE4E1B55672 /* Build configuration list for PBXProject "r2-streamer-swift" */;
 			compatibilityVersion = "Xcode 10.0";
