@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 **Warning:** Features marked as *alpha* may change or be removed in a future release without notice. Use with caution.
 
-## [Unreleased]
+<!--## [Unreleased]-->
+
+## [2.1.0]
 
 ### Added
 
@@ -15,7 +17,11 @@ All notable changes to this project will be documented in this file.
 
 * The default EPUB positions service now uses the archive entry length when available. [This is similar to how Adobe RMSDK generates page numbers](https://github.com/readium/architecture/issues/123).
     * To use the former strategy, create the `Streamer` with: `Streamer(parsers: [EPUBParser(reflowablePositionsStrategy: .originalLength(pageLength: 1024))])`
-    
+
+### Fixed
+
+* [#208](https://github.com/readium/r2-streamer-swift/issues/208) Crash when reading obfuscated EPUB resources with an empty publication identifier.
+
 
 ## [2.0.0]
 
@@ -81,3 +87,4 @@ All notable changes to this project will be documented in this file.
 [2.0.0-beta.1]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-alpha.2...2.0.0-beta.1
 [2.0.0-beta.2]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-beta.1...2.0.0-beta.2
 [2.0.0]: https://github.com/readium/r2-streamer-swift/compare/2.0.0-beta.2...2.0.0
+[2.1.0]: https://github.com/readium/r2-streamer-swift/compare/2.0.0...2.1.0

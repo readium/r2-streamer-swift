@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "4e31051c63cc0ddf10a25cf5318856c510cf77f4",
-          "version": "1.4.0"
+          "revision": "8d4f6384e0a8cc41f2005247241dd553963a492a",
+          "version": "1.4.1"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/readium/GCDWebServer.git",
         "state": {
           "branch": null,
-          "revision": "fa49907a784263e7fcc88739d3937d1a2022d50a",
-          "version": "3.7.0"
+          "revision": "003f878bdfa00139c0fd29f71727daf483455bc3",
+          "version": "3.7.1"
         }
       },
       {
@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/readium/r2-shared-swift.git",
         "state": {
           "branch": "develop",
-          "revision": "da74c212047c4616876b25a2993572dda888b949",
+          "revision": "7c66c3b7eb8711946b4fca4a1cce8f5ae0bc6bfe",
           "version": null
         }
       },
